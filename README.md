@@ -1,5 +1,7 @@
 # node-wireless
 
+Forked to add more fetures by PrankyMat. Original readme below.
+
 A utility for handling interactions with wireless interfaces on \*nix distributions.
 
 ## Goals
