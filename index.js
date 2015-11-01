@@ -62,7 +62,7 @@ Wireless.prototype.COMMANDS = {
   metric: 'sudo ifconfig :INTERFACE metric :METRIC',
   // connect_wep: 'nmcli device wifi connect ":ESSID" password ":PASSWORD" iface :INTERFACE',
   connect_wep: 'exit',
-  connect_wpa: 'sudo rm -f "/etc/NetworkManager/system-connections/:ESSID" && sleep 1 && nmcli device wifi connect ":BSSID" password ":PASSWORD" iface :INTERFACE',
+  connect_wpa: 'if [ -e "/etc/NetworkManager/system-connections/:ESSID" ]; then sudo nmcli con delete ":ESSID"; fi && sudo nmcli device wifi connect ":BSSID" password ":PASSWORD" ifname :INTERFACE',
   connect_open: 'sudo iwconfig :INTERFACE essid ":ESSID"',
 };
 
