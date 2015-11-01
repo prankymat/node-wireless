@@ -62,7 +62,7 @@ Wireless.prototype.COMMANDS = {
   metric: 'sudo ifconfig :INTERFACE metric :METRIC',
   // connect_wep: 'nmcli device wifi connect ":ESSID" password ":PASSWORD" iface :INTERFACE',
   connect_wep: 'exit',
-  connect_wpa: 'if [ -e "/etc/NetworkManager/system-connections/:ESSID" ]; then sudo nmcli con delete ":ESSID"; fi && sudo nmcli device wifi connect ":BSSID" password ":PASSWORD" ifname :INTERFACE',
+  connect_wpa: 'if [ -e "/etc/NetworkManager/system-connections/:ESSID" ]; then sudo nmcli con delete id ":ESSID"; fi && sudo nmcli device wifi connect ":BSSID" password ":PASSWORD" iface :INTERFACE',
   connect_open: 'sudo iwconfig :INTERFACE essid ":ESSID"',
 };
 
@@ -354,8 +354,8 @@ Wireless.prototype._parseScan = function(scanResults) {
     } else if (line.indexOf('Channel') === 0) {
       network.channel = line.match(/Channel:([0-9]{1,2})/)[1];
     } else if (line.indexOf('Quality') === 0) {
-      network.quality = line.match(/Quality=([0-9]{1,2})\/70/)[1];
-      network.strength = line.match(/Signal level=(-?[0-9]{1,3}) dBm/)[1];
+      //network.quality = line.match(/Quality=([0-9]{1,2})\/70/)[1];
+      //network.strength = line.match(/Signal level=(-?[0-9]{1,3}) dBm/)[1];
     } else if (line.indexOf('Encryption key') === 0) {
       var enc = line.match(/Encryption key:(on|off)/)[1];
       if (enc === 'on') {
